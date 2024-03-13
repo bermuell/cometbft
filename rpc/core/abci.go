@@ -18,12 +18,14 @@ func (env *Environment) ABCIQuery(
 	data bytes.HexBytes,
 	height int64,
 	prove bool,
+	chainId string,
 ) (*ctypes.ResultABCIQuery, error) {
 	resQuery, err := env.ProxyAppQuery.Query(context.TODO(), &abci.RequestQuery{
-		Path:   path,
-		Data:   data,
-		Height: height,
-		Prove:  prove,
+		Path:    path,
+		Data:    data,
+		Height:  height,
+		Prove:   prove,
+		ChainId: chainId,
 	})
 	if err != nil {
 		return nil, err
